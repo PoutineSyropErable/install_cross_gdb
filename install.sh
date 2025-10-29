@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 set -euo pipefail
 
 # --- Install host dependencies ---
@@ -38,3 +38,5 @@ fi
 ./install_64.sh
 
 echo "✅ All cross-GDB toolchains (ia16, i686, x86_64) installed successfully."
+
+./move_to_user_local_syswide.sh
