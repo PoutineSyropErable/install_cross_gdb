@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+CROSS_DIR="$HOME/cross-gdb-new"
+
 # Helper function to create symlink if it doesn't exist
 link_if_not_exists() {
 	local target="$1"
@@ -14,10 +16,10 @@ link_if_not_exists() {
 }
 
 # i686 cross-GDB
-link_if_not_exists "$HOME/cross-gdb/install-i686/bin/i686-elf-gdb" "/usr/local/bin/i686-elf-gdb"
+link_if_not_exists "$CROSS_DIR/install-i686/bin/i686-elf-gdb" "/usr/local/bin/i686-elf-gdb"
 
 # x86_64 cross-GDB
-link_if_not_exists "$HOME/cross-gdb/install-x86_64/bin/x86_64-elf-gdb" "/usr/local/bin/x86_64-elf-gdb"
+link_if_not_exists "$CROSS_DIR/install-x86_64/bin/x86_64-elf-gdb" "/usr/local/bin/x86_64-elf-gdb"
 
 # ia16 cross-GDB (if needed)
-link_if_not_exists "$HOME/cross-gdb/install-ia16/bin/ia16-elf-gdb" "/usr/local/bin/ia16-elf-gdb"
+link_if_not_exists "$CROSS_DIR/install-ia16/bin/ia16-elf-gdb" "/usr/local/bin/ia16-elf-gdb"

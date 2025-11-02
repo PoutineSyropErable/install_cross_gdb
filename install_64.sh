@@ -2,13 +2,14 @@
 set -euo pipefail
 
 # Setup
-cd ~/cross-gdb-new
+CROSS_DIR="$HOME/cross-gdb-new"
+cd "$CROSS_DIR"
 
 # Create separate build and install directories (explicit x86_64 names)
 mkdir -p build-binutils-x86_64 build-gdb-x86_64 install-x86_64
 
 # Set up environment variables
-export PREFIX="$HOME/cross-gdb/install-x86_64"
+export PREFIX="$CROSS_DIR/install-x86_64"
 export TARGET=x86_64-elf
 export PATH="$PREFIX/bin:$PATH"
 
@@ -31,7 +32,7 @@ make -j"$(nproc)"
 make install
 
 # Build GDB
-cd ~/cross-gdb/build-gdb-x86_64
+cd "$CROSS_DIR/build-gdb-x86_64"
 ../gdb-16.3/configure \
 	--target=$TARGET \
 	--prefix=$PREFIX \

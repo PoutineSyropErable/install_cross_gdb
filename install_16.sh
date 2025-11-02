@@ -2,7 +2,8 @@
 set -euo pipefail
 
 # Setup
-cd ~/cross-gdb-new
+CROSS_DIR="$HOME/cross-gdb-new"
+cd "$CROSS_DIR"
 
 # Create separate build and install directories (explicit ia16 names)
 mkdir -p build-binutils-ia16 build-gdb-ia16 install-ia16
@@ -12,7 +13,7 @@ rm -rf build-binutils-ia16/* build-gdb-ia16/*
 
 # Set environment variables
 export TARGET=ia16-elf
-export PREFIX="$HOME/cross-gdb-new/install-ia16"
+export PREFIX="$CROSS_DIR/install-ia16"
 export PATH="$PREFIX/bin:$PATH"
 
 # Extract sources if not already present
@@ -30,7 +31,7 @@ make -j"$(nproc)"
 make install
 
 # Build GDB
-cd ~/cross-gdb/build-gdb-ia16
+cd "$CROSS_DIR/build-gdb-ia16"
 ../gdb-16.3/configure \
 	--target=$TARGET \
 	--prefix=$PREFIX \

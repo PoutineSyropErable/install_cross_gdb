@@ -2,7 +2,8 @@
 set -euo pipefail
 
 # Setup
-cd ~/cross-gdb-new
+CROSS_DIR="$HOME/cross-gdb-new"
+cd "$CROSS_DIR"
 
 # Create separate build and install directories (explicit i686 names)
 mkdir -p build-binutils-i686 build-gdb-i686 install-i686
@@ -12,7 +13,7 @@ rm -rf build-binutils-i686/* build-gdb-i686/*
 
 # Define target and prefix
 export TARGET=i686-elf
-export PREFIX="$HOME/cross-gdb-new/install-i686"
+export PREFIX="$CROSS_DIR/install-i686"
 export PATH="$PREFIX/bin:$PATH"
 
 # Extract sources if not already present
@@ -31,7 +32,7 @@ make -j"$(nproc)"
 make install
 
 # Build GDB
-cd ~/cross-gdb/build-gdb-i686
+cd "$CROSS_DIR/build-gdb-i686"
 ../gdb-16.3/configure \
 	--target=$TARGET \
 	--prefix=$PREFIX \
