@@ -2,7 +2,7 @@
 set -euo pipefail
 
 # Setup
-cd ~/cross-gdb
+cd ~/cross-gdb-new
 
 # Create separate build and install directories (explicit x86_64 names)
 mkdir -p build-binutils-x86_64 build-gdb-x86_64 install-x86_64
@@ -16,12 +16,12 @@ export PATH="$PREFIX/bin:$PATH"
 rm -rf build-binutils-x86_64/* build-gdb-x86_64/*
 
 # Extract sources if not already present
-[[ -d binutils-2.42 ]] || tar xf binutils-2.42.tar.gz
-[[ -d gdb-13.2 ]] || tar xf gdb-13.2.tar.gz
+[[ -d binutils-2.45 ]] || tar xf binutils-2.45.tar.gz
+[[ -d gdb-16.3 ]] || tar xf gdb-16.3.tar.gz
 
 # Build binutils
 cd build-binutils-x86_64
-../binutils-2.42/configure \
+../binutils-2.45/configure \
 	--target=$TARGET \
 	--prefix=$PREFIX \
 	--with-sysroot \
@@ -32,13 +32,13 @@ make install
 
 # Build GDB
 cd ~/cross-gdb/build-gdb-x86_64
-../gdb-13.2/configure \
+../gdb-16.3/configure \
 	--target=$TARGET \
 	--prefix=$PREFIX \
-	--with-python=/usr/bin/python3.11 \
+	--with-python=/usr/bin/python \
 	--disable-nls \
 	--enable-tui \
-	CC=/usr/bin/gcc-12
+	CC=/usr/bin/gcc
 make -j"$(nproc)"
 make install
 
