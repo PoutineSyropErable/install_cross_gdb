@@ -6,7 +6,7 @@ cd ~/cross-gdb
 ```
 
 
-You need python3.11 and gcc12 
+You need python3.11 and gcc12  (for the old version)
 So, for arch linux, a yay -S is done
 
 Then, the binutils-2.45 and gdb-16.3 are downloaded, compiled and installed to the local dir here. 
